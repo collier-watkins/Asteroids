@@ -1,4 +1,4 @@
-add_library('sound')
+#add_library('sound')
     # Add animation for player
     # Add aliens
     # Add Spawn and commands
@@ -29,8 +29,8 @@ class Laser :
         self.angle = shipAngle
         self.alive = True
         self.FireTime = millis()
-        global laserSound
-        laserSound.play()
+        #global laserSound
+        #laserSound.play()
        
         
         
@@ -86,7 +86,7 @@ class Spaceship :
             self.ySpeed = 0
             self.alive = False
             self.lives = 3
-            self.spawnX = [680, 1075, 1075, 250, 250]
+            self.spawnX = [width/2, 1075, 1075, 250, 250]
             self.spawnY = [400, 262, 525, 525, 262]
             self.engineFlicker = 0
             
@@ -365,8 +365,8 @@ global score
 
 global looping
 
-global laserSound
-global astExpSound
+#global laserSound
+#global astExpSound
 
 def increaseLevel():
     global allDestroyedTime
@@ -390,7 +390,7 @@ def increaseLevel():
         asteroids.append( Asteroid(astX,astY,3,random(0,2*PI) ) )  
       
     #Stationary Asteroid for Debugging  
-    #a = Asteroid(680,400,3,random(0,2*PI))
+    #a = Asteroid(width/2height/2,3,random(0,2*PI))
     #a.speed = 0
     #asteroids.append(a)
     
@@ -425,8 +425,8 @@ def killAsteroid(i) :
         asteroids.append( Asteroid(parentX,parentY,parentS -1, parentA + random(-PI/2,PI/2) ) )  
         asteroids.append( Asteroid(parentX,parentY,parentS -1, parentA + random(-PI/2,PI/2) ) ) 
         
-    global astExpSound
-    astExpSound.play()
+    #global astExpSound
+    #astExpSound.play()
     
  
 def setup() :
@@ -444,14 +444,14 @@ def setup() :
     global deathFrame
     global score
     global looping
-    global laserSound
-    global astExpSound
+    #global laserSound
+    #global astExpSound
     
     currentLevel = 3
     allDestroyedTime = -100000
     lastAstLen = 0
             
-    player = Spaceship(680,400)
+    player = Spaceship(width/2,height/2)
     
     extraLifeScore = 10000
     
@@ -467,8 +467,8 @@ def setup() :
     score = 0
     looping = True
     
-    laserSound = SoundFile(this, "Laser.aiff")
-    astExpSound = SoundFile(this,"AsteroidsExplosion.wav")
+    #laserSound = SoundFile(this, "Laser.aiff")
+    #astExpSound = SoundFile(this,"AsteroidsExplosion.wav")
     
     
     
@@ -540,7 +540,7 @@ def draw():
     textSize(18)
     text("Lives : " + str(player.lives),100,140)
     text("Level : " + str(currentLevel-3),width-100,140)
-    text("Score : " + str(score),width-1267,75)
+    text("Score : " + str(score),width/2,75)
     
     
     
@@ -558,7 +558,7 @@ def draw():
     
     if player.lives == 0 :
         textSize(48)
-        text("Game Over",550,400)     
+        text("Game Over",width/2-100,height/2)     
    
    
 def keyPressed() :
@@ -582,7 +582,7 @@ def keyPressed() :
          if (looping) :
             noLoop()
             looping = False
-            text("Paused",680,400)
+            text("Paused",width/2,height/2)
          else : 
              loop() 
              looping = True
